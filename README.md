@@ -39,14 +39,14 @@ const sandgate = require("sandgate") // Use "sandgate" to refrence later
 ## 📄 Documentation
 
 #### 📋 Table of Contents
-- [Constructing a Gate](#-constructing-a-gate)
-  * [Gate Options](#-gate-options)
+- [Constructing a Gate](#%EF%B8%8F-constructing-a-gate)
+  * [Gate Options](#%EF%B8%8F-gate-options)
 - [Listening for Requests](#-listening-for-requests)
-  * [Callbacks whilst Listening](#🗣-callbacks-whilst-listening)
-- [Request Handling](#-request-handling)
+  * [Callbacks whilst Listening](#%EF%B8%8F-callbacks-whilst-listening)
+- [Request Handling](#%EF%B8%8F-request-handling)
   * [GET Requests](#-get-requests)
 - [Addons](#-addons)
-	* [Included Addons](#✔-included-addons)
+	* [Included Addons](#%EF%B8%8F-included-addons)
 		 + [Public Directories](#-public-directories)
 
 
@@ -136,7 +136,7 @@ app
 If you requested `localhost:3000/style.css` or `localhost:3000/client.js` it would send said file. Note that you only need one public per directory.
 
 
-*( ﾟヮﾟ) Doesn't look like there are anymore addons... [Suggest one!](https://github.com/LandonScripts/issues)*
+*( ﾟヮﾟ) Doesn't look like there are anymore addons... [Suggest one!](https://github.com/LandonScripts/SandGate/issues)*
 
 ## 🚀 Examples
 Want to quickly check if you have installed Sandgate correctly? Then just setup quick-listen!
@@ -277,7 +277,7 @@ gate.listen(3000);
 ```
 Easy as that! All your files are available!
 
-*( ﾟヮﾟ) Doesn't look like there are anymore addons... [Suggest one!](https://github.com/LandonScripts/issues)*
+*( ﾟヮﾟ) Doesn't look like there are anymore addons... [Suggest one!](https://github.com/LandonScripts/SandGate/issues)*
 
 ## License
 [MIT]([https://github.com/LandonScripts/SandGate/blob/master/LICENSE.md](https://github.com/LandonScripts/SandGate/blob/master/LICENSE.md))
