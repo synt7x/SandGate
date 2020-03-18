@@ -13,12 +13,13 @@
       "node": "12.x"
     },
     "repository": {
-      "url": "https://glitch.com/edit/#!/hello-express"
+      "url": "https://github.com/LandonScripts/SandGate"
     },
     "license": "MIT",
     "keywords": [
-      "node",
-      "glitch",
-      "express"
+      "server",
+      "webserver",
+      "quick",
+      "light"
     ]
   }
