@@ -1,4 +1,4 @@
-<div align="center">
+<div style="text-align: center;">
 <h1>Sandgate</h1>
 <a href="https://nodei.co/npm/sandgate/">
 	<img src="https://nodei.co/npm/sandgate.png?downloads=true&stars=true"/>
@@ -39,15 +39,15 @@ const sandgate = require("sandgate") // Use "sandgate" to refrence later
 ## 📄 Documentation
 
 #### 📋 Table of Contents
-- [Constructing a Gate](#🛠️-constructing-a-gate)
-  * [Gate Options](#⚙️-gate-options)
-- [Listening for Requests](#👂-listening-for-requests)
-  * [Callbacks whilst Listening](#🗣️-callbacks-whilst-listening)
-- [Request Handling](#🖥️-request-handling)
-  * [GET Requests](#📥-get-requests)
-- [Addons](#➕-addons)
-	* [Included Addons](#✔️-included-addons)
-		 + [Public Directories](#🌠-public-directories)
+- [Constructing a Gate](#-constructing-a-gate)
+  * [Gate Options](#-gate-options)
+- [Listening for Requests](#-listening-for-requests)
+  * [Callbacks whilst Listening](#🗣-callbacks-whilst-listening)
+- [Request Handling](#-request-handling)
+  * [GET Requests](#-get-requests)
+- [Addons](#-addons)
+	* [Included Addons](#✔-included-addons)
+		 + [Public Directories](#-public-directories)
 
 
 ### 🛠️ Constructing a Gate
@@ -64,7 +64,7 @@ Your gate can be created with options. The options are stored as a JSON in the c
 
 ```json
 {
-"404": path
+"404": "./path/to/html"
 }
 ```
 Note that there are currently only `1` variable in options, but there will be more fairly soon. The options can be used like so
@@ -115,7 +115,7 @@ gate.listen(3000);
 Addons are functions added to the class structure for use in servers. Addons currently have to be directly coded in, but this will change soon with compatibility. In the meantime, you can request addons in the [issues page](https://github.com/LandonScripts/SandGate/issues) of the Sandgate repository.
 
 #### ✔️ Included addons
-These addons come included with Sandgate, and are already ready for use in your server. Included addons will be added into this section of the documentation for your use. You can scroll back up to the [Table of Contents](#📋-table-of-contents) for easy access to the list of included addons.
+These addons come included with Sandgate, and are already ready for use in your server. Included addons will be added into this section of the documentation for your use. You can scroll back up to the [Table of Contents](#-table-of-contents) for easy access to the list of included addons.
 
 ----
 
@@ -204,7 +204,7 @@ Which will appear like this!
 *(Not to scale)*
 
 ### 📰 Sending a File
-Sending a file is actually the exact same as [Sending HTML](#📦-sending-html), Again, we use `res.sendFile()`.  Here is the code
+Sending a file is actually the exact same as [Sending HTML](#-sending-html), Again, we use `res.sendFile()`.  Here is the code
 ```js
 const sandgate = require("sandgate");
 const gate = new sandgate();
@@ -218,7 +218,7 @@ gate.listen(3000);
 This works with almost any file type because of the fantastic NPM package called [`mime-types`](https://npmjs.com/mime-types).  This will allow the browser to properly display the file!
 
 ### ⚙️ Using Options
-As stated previously in [Gate Options](#⚙️-gate-options), you can use options to control how your server works. Here is an example
+As stated previously in [Gate Options](#-gate-options), you can use options to control how your server works. Here is an example
 ```js
 const sandgate = require("sandgate");
 
@@ -234,7 +234,7 @@ gate.get("/", (req, res) => {
 
 gate.listen(3000);
 ```
-This will make the server send the `404.html` file to the client whenever a page is requested that does not exist. You can see the other options in [Gate Options](#⚙️-gate-options).
+This will make the server send the `404.html` file to the client whenever a page is requested that does not exist. You can see the other options in [Gate Options](#-gate-options).
 
 ### 🔌 Using Multiple Ports
 With Sandgate, you can quickly create and listen on multiple different ports. The setup is much like a normal server, but duplicated.
