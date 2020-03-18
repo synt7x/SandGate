@@ -1,6 +1,6 @@
 {
     "name": "sandgate",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "description": "Quickly assemble lightweight apps in Node, with only one additional package.",
     "main": "package.js",
     "scripts": {

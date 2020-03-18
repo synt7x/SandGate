@@ -7,7 +7,7 @@ class sandgate {
     constructor(options) {
       
         this.server = []
-        this.opts = { "404": 'require.resolve("sandgate/placeHolders/404.html")' }
+        this.opts = { "404": require.resolve("sandgate/placeHolders/404.html") }
 
         if (options !== undefined) this.opts = options;
     }
