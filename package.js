@@ -7,7 +7,7 @@ class sandgate {
     constructor(options) {
       
         this.server = []
-        this.opts = { "404": "./sandgate/404.html" }
+        this.opts = { "404": 'require.resolve("sandgate/placeHolders/404.html")' }
 
         if (options !== undefined) this.opts = options;
     }
@@ -18,9 +18,10 @@ class sandgate {
       
       setTimeout(() => {
         http.createServer((req, res) => {
+
             if (server.length == 0) {
                 res.writeHead(200, { 'server': 'SandGate', 'Content-Type': 'text/html; charset=utf-8' });
-                res.write(fs.readFileSync("./sandgate/default.html"));
+                res.write(fs.readFileSync(require.resolve("sandgate/placeHolders/default.html")));
             };
 
             res.sendFile = (path) => {
@@ -28,19 +29,23 @@ class sandgate {
                 res.write(fs.readFileSync(path));
             }
 
-            let route = server.find(item => item.url == req.url);
-          
+            res.send = (text, status) => {
+                let writeStatus = status == undefined ? 200 : status
 
+                res.writeHead(writeStatus, { 'server': 'SandGate', 'Content-Type': 'text/html; charset=utf-8'})
+                res.write(text)
+            }
+            let route = server.find(item => item.url == req.url);
             if (route == undefined) {
+                res.writeHead(404, { 'server': 'SandGate', 'Content-Type': mime.contentType(this.opts["404"].replace(/^.*[\\\/]/, '')) });
                 res.write(fs.readFileSync(this.opts["404"]))
-                res.writeHead(200, { 'server': 'SandGate', 'Content-Type': mime.contentType(this.opts["404"].replace(/^.*[\\\/]/, '')) });
             };
           
-            if (!route == undefined && server.length !== 0) route.callback(req, res)
+            if (route !== undefined && server.length !== 0) route.callback(req, res)
             res.end()
         }).listen(port)
 
-        callback(port)
+        if (typeof callback == "function") callback(port)
         }, 50)
     }
 
