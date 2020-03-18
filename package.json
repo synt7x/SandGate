@@ -1,0 +1,24 @@
+{
+    "name": "sandgate",
+    "version": "1.0.1",
+    "description": "Quickly assemble lightweight apps in Node, with only one additional package.",
+    "main": "package.js",
+    "scripts": {
+      "start": "node package.js"
+    },
+    "dependencies": {
+      "mime-types": "^2.1.26"
+    },
+    "engines": {
+      "node": "12.x"
+    },
+    "repository": {
+      "url": "https://glitch.com/edit/#!/hello-express"
+    },
+    "license": "MIT",
+    "keywords": [
+      "node",
+      "glitch",
+      "express"
+    ]
+  }
