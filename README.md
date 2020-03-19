@@ -102,7 +102,7 @@ The most important part of a webserver *(depends who you ask)* is the request ha
 
 There are a few methods, these decide how an HTTP request will act. Some of these methods will give information, files, text, such as `GET` and `HEAD`, while others send information and instructions to and from such as `POST`, `PUT`, `DELETE`, and `PATCH`. *(Note that there are more methods in existance)*
 
-Currently, Sandgate only supports `GET` requests. This will change in the future because Sandgate is quite new.
+Currently, Sandgate only supports `GET`, `POST`, `PUT`, and `DELETE` requests. This will change in the future because Sandgate is quite new.
 
 #### 📥 GET Requests
 The `GET` handler in Sandgate is just the function `gate.get()`. The first input is the URL path, and the second input is the callback. The callback has two inputs in this order: `request` to handle the inputs from the request, and `response` to send data back to the client. So it would look like this
@@ -314,5 +314,3 @@ Easy as that! All your files are available!
 
 ## License
 [MIT](https://github.com/LandonScripts/SandGate/blob/master/LICENSE.md)
-
-###### Github README
