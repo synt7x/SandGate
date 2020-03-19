@@ -40,23 +40,25 @@ class sandgate {
             }
             let route = server.find(item => item.url == req.url && item.Method == req.method);
             
-            if (route !== undefined && route.Method == "POST" || route.Method == "PUT" || route.Method == "DELETE") {
-              new Promise(async (resolve, reject) => {
-                let holdBody = ""
-
-                req.on('data', chunk => {
-                  holdBody += chunk.toString();
-                });
-
-                req.on('end', () => {
-                  resolve(holdBody)
+            if (route !== undefined) {
+              if (route.Method == "POST" || route.Method == "PUT" || route.Method == "DELETE") {
+                new Promise(async (resolve, reject) => {
+                  let holdBody = ""
+  
+                  req.on('data', chunk => {
+                    holdBody += chunk.toString();
+                  });
+  
+                  req.on('end', () => {
+                    resolve(holdBody)
+                  })
+                }).then((body) => {
+                  req.body = body;
+  
+                  route.callback(req, res, body)
+                  res.end()
                 })
-              }).then((body) => {
-                req.body = body;
-
-                route.callback(req, res, body)
-                res.end()
-              })
+              }
             }
 
             if (route == undefined) {
