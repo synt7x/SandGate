@@ -20,6 +20,7 @@
       "server",
       "webserver",
       "quick",
-      "light"
+      "light",
+      "get"
     ]
   }

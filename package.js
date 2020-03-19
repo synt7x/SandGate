@@ -3,6 +3,8 @@ let fs = require('fs')
 let mime = require("mime-types")
 let queryStr = require('querystring');
 
+// Sandgate v1.0.8
+
 class sandgate {
   
     constructor(options) {
