@@ -45,6 +45,9 @@ const sandgate = require("sandgate") // Use "sandgate" to refrence later
   * [Callbacks whilst Listening](#%EF%B8%8F-callbacks-whilst-listening)
 - [Request Handling](#%EF%B8%8F-request-handling)
   * [GET Requests](#-get-requests)
+  * [POST Requests](#-post-requests)
+  * [PUT Requests](#-put-requests)
+  * [DELETE Requests](#-delete-requests)
 - [Addons](#-addons)
 	* [Included Addons](#%EF%B8%8F-included-addons)
 		 + [Public Directories](#-public-directories)
@@ -109,6 +112,36 @@ gate.get("/home", (req, res) => {
 });
 
 gate.listen(3000);
+```
+
+#### ➡️ POST Requests
+The `POST` handler in Sandgate is similar to that of get. It is just `gate.get()`. The inputs are the same, and the callback is the same, except for an extra parameter: `body`. The callback also returns `req.body` which is the same as `body`. Here is some code
+```js
+gate.post("/api/login", (req, res, body) => {
+	console.log(body == req.body); // returns 'true'
+
+	res.send("Logged in!")
+})
+```
+
+#### ☁️ PUT Requests
+Similar to `POST` and `GET` the PUT request uses `gate.put()`. The `PUT` method is used to update data. Much like `POST` it uses `body` and `req.body` in the callback. Here is a sample
+```js
+gate.put("/update/file.js", (req, res) => {
+	fs.writeFileSync("file.js", req.body)
+
+	res.send("Saved!", 200)
+})
+```
+
+#### ❌ DELETE Requests
+`DELETE` and `PUT` requests are nearly identical. The `DELETE` method is used to delete data. It again has `body` in the callback. Here is how it might work
+```js
+gate.delete("api/removeUser", (req, res) => {
+	myDB.user.find(JSON.parse(req.body).id).delete()
+
+	res.send("Deleted user!", 200)
+})
 ```
 
 ### ➕ Addons
@@ -280,4 +313,4 @@ Easy as that! All your files are available!
 *( ﾟヮﾟ) Doesn't look like there are anymore addons... [Suggest one!](https://github.com/LandonScripts/SandGate/issues)*
 
 ## License
-[MIT]([https://github.com/LandonScripts/SandGate/blob/master/LICENSE.md](https://github.com/LandonScripts/SandGate/blob/master/LICENSE.md))
+[MIT](https://github.com/LandonScripts/SandGate/blob/master/LICENSE.md)
