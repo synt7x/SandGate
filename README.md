@@ -14,7 +14,7 @@
 <img src="https://img.shields.io/david/LandonScripts/sandgate.svg?maxAge=3600"/>
 </a>
 <br>
-<b>Make sure to request ideas on the <a href="https://github.com/LandonScripts/issues">issues page</a>!</b>
+<b>Make sure to request ideas on the <a href="https://github.com/LandonScripts/Sandgate/issues">issues page</a>!</b>
 </div>
 
 ## 💽 Installation
