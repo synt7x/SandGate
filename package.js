@@ -24,7 +24,9 @@ class sandgate {
 
             if (server.length == 0) {
                 res.writeHead(200, { 'server': 'SandGate', 'Content-Type': 'text/html; charset=utf-8' });
-                res.write(fs.readFileSync(require.resolve("sandgate/placeHolders/default.html")));
+                res.write(fs.readFileSync(require.resolve("sandgate/placeHolders/default.html"), 'utf-8').toString());
+
+                res.end()
             };
 
             res.sendFile = (path) => {
@@ -61,9 +63,11 @@ class sandgate {
               }
             }
 
-            if (route == undefined) {
+            if (route == undefined && server.length !== 0) {
                 res.writeHead(404, { 'server': 'SandGate', 'Content-Type': mime.contentType(this.opts["404"].replace(/^.*[\\\/]/, '')) });
                 res.write(fs.readFileSync(this.opts["404"]))
+
+                res.end()
             };
           
             if (route !== undefined && server.length !== 0 && route.Method == "GET") {
