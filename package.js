@@ -3,7 +3,7 @@ let fs = require('fs')
 let mime = require("mime-types")
 let queryStr = require('querystring');
 
-// Sandgate v1.0.8
+// Sandgate v1.2.0
 
 class sandgate {
   
@@ -16,12 +16,10 @@ class sandgate {
     }
 
     listen(port, callback) {
-      
-      let server = this.server;
-      
       setTimeout(() => {
         http.createServer((req, res) => {
 
+          let server = this.server;
             if (server.length == 0) {
                 res.writeHead(200, { 'server': 'SandGate', 'Content-Type': 'text/html; charset=utf-8' });
                 res.write(fs.readFileSync(require.resolve("sandgate/placeHolders/default.html"), 'utf-8').toString());
@@ -115,6 +113,8 @@ class sandgate {
         })
       }).then((items) => {
         this.server = this.server.concat(items)
+
+        console.log(this.server)
       })
       
     }
