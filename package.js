@@ -113,8 +113,6 @@ class sandgate {
         })
       }).then((items) => {
         this.server = this.server.concat(items)
-
-        console.log(this.server)
       })
       
     }
