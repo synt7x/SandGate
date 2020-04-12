@@ -42,7 +42,7 @@ class sandgate {
             }
 
             res.json = (json) => {
-              res.writeHead(writeStatus, { 'server': 'SandGate', 'Content-Type': 'application/json; charset=utf-8'})
+              res.writeHead(200, { 'server': 'SandGate', 'Content-Type': 'application/json; charset=utf-8'})
               res.write(JSON.stringify(json));
             }
             let route = server.find(item => item.url == req.url && item.Method == req.method);
