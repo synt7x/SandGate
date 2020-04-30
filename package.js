@@ -3,7 +3,7 @@ let fs = require('fs')
 let mime = require("mime-types")
 let queryStr = require('querystring');
 
-// Sandgate v1.2.2
+// Sandgate v1.2.3
 // Syntax#9930
 
 
@@ -69,7 +69,6 @@ class sandgate {
             let removeParams = ((item, url) => {
                 
               let locations = getParamLocations(item)
-              console.log(locations)
               
               let tempurl = url.split("/")
               locations.forEach((location) => {

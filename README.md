@@ -36,7 +36,7 @@ Make sure to require Sandgate in your code
 const sandgate = require("sandgate") // Use "sandgate" to refrence later
 ```
 
-<small>Latest Update: v1.2.2, CORS, Addon Support, and Request Parameters</small>
+<small>Latest Update: v1.2.3, CORS, Addon Support, and Request Parameters</small>
 
 ## 📄 Documentation
 
