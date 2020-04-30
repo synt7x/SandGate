@@ -36,6 +36,8 @@ Make sure to require Sandgate in your code
 const sandgate = require("sandgate") // Use "sandgate" to refrence later
 ```
 
+<small>Latest Update: v1.2.2, CORS, Addon Support, and Request Parameters</small>
+
 ## 📄 Documentation
 
 #### 📋 Table of Contents
@@ -145,12 +147,21 @@ gate.delete("api/removeUser", (req, res) => {
 ```
 
 ### ➕ Addons
-Addons are functions added to the class structure for use in servers. Addons currently have to be directly coded in, but this will change soon with compatibility. In the meantime, you can request addons in the [issues page](https://github.com/LandonScripts/SandGate/issues) of the Sandgate repository.
+Addons are functions added to the class structure for use in servers. Community addons are currently available! The documentation will come very soon. You can request addons in the [issues page](https://github.com/LandonScripts/SandGate/issues) of the Sandgate repository.
 
 #### ✔️ Included addons
 These addons come included with Sandgate, and are already ready for use in your server. Included addons will be added into this section of the documentation for your use. You can scroll back up to the [Table of Contents](#-table-of-contents) for easy access to the list of included addons.
 
 ----
+
+### 🏠 CORS
+This addon will allow you to make `GET` and `POST` requests across different domains. It is very simple to setup and comes preinstalled with SandGate.
+```js
+gate.use(sandgate.cors());
+
+gate.listen(3000);
+```
+And thats it!
 
 ### 🌠 Public Directories
 This addon allows you to use a directory to serve files as opposed to creating many `GET` listeners. It automatically adds a `GET` listener to all files in the specified directory. All you have to do is call `gate.public()`. It would look like as follows

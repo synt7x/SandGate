@@ -3,11 +3,15 @@ let fs = require('fs')
 let mime = require("mime-types")
 let queryStr = require('querystring');
 
-// Sandgate v1.2.0
+// Sandgate v1.2.2
+// Syntax#9930
+
 
 class sandgate {
   
     constructor(options) {
+
+        this.plugins = []
       
         this.server = []
         this.opts = { "404": require.resolve("sandgate/placeHolders/404.html") }
@@ -15,9 +19,17 @@ class sandgate {
         if (options !== undefined) this.opts = options;
     }
 
+
+    use(callback) {
+      this.plugins.push("callback");
+    }
+
     listen(port, callback) {
       setTimeout(() => {
         http.createServer((req, res) => {
+          this.plugins.forEach((plugin) => {
+            plugin.callback(req, res)
+          })
 
           let server = this.server;
             if (server.length == 0) {
@@ -43,8 +55,45 @@ class sandgate {
               res.writeHead(200, { 'server': 'SandGate', 'Content-Type': 'application/json; charset=utf-8'})
               res.write(JSON.stringify(json));
             }
-            let route = server.find(item => item.url == req.url && item.Method == req.method);
+            let getParamLocations = ((item) => {
+              let paramLoc = [];
+              let nn = 0; 
+              item.url.split("/").forEach((flake) => { 
+                if (flake[0] == ":") paramLoc.push(nn); 
+                nn++
+              });
             
+              return paramLoc;
+            })
+            
+            let removeParams = ((item, url) => {
+                
+              let locations = getParamLocations(item)
+              console.log(locations)
+              
+              let tempurl = url.split("/")
+              locations.forEach((location) => {
+                tempurl.splice(location, 1, '')
+              })
+
+              return tempurl.join("/");
+            })
+            
+            let route = server.find(item => (item.url == req.url || removeParams(item, item.url) == removeParams(item, req.url)) && item.url.split("/").filter(n => n).length == req.url.split("/").filter(n => n).length && item.Method == req.method);
+            
+            req.params = {};
+
+            let n = 0;
+            
+            route.url.split("/").forEach((part) => {
+              if (part[0] == ":") {
+                
+                req.params[part.slice(1)] = req.url.split("/")[n]
+              }
+              
+              n++
+            })
+
             if (route !== undefined) {
               if (route.Method == "POST" || route.Method == "PUT" || route.Method == "DELETE") {
                 new Promise(async (resolve, reject) => {
@@ -120,3 +169,8 @@ class sandgate {
 }
 
 module.exports = sandgate;
+module.exports.cors = ((req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*")
+  res.setHeader("Access-Control-Allow-Methods", "OPTIONS, POST, GET")
+  res.setHeader("Access-Control-Max-Age", "2592000")
+})
