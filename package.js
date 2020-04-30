@@ -3,7 +3,7 @@ let fs = require('fs')
 let mime = require("mime-types")
 let queryStr = require('querystring');
 
-// Sandgate v1.2.3
+// Sandgate v1.2.4
 // Syntax#9930
 
 
@@ -83,15 +83,16 @@ class sandgate {
             req.params = {};
 
             let n = 0;
-            
-            route.url.split("/").forEach((part) => {
-              if (part[0] == ":") {
+            if (route !== undefined) {
+              route.url.split("/").forEach((part) => {
+                if (part[0] == ":") {
+                  
+                  req.params[part.slice(1)] = req.url.split("/")[n]
+                }
                 
-                req.params[part.slice(1)] = req.url.split("/")[n]
-              }
-              
-              n++
-            })
+                n++
+              })
+            }
 
             if (route !== undefined) {
               if (route.Method == "POST" || route.Method == "PUT" || route.Method == "DELETE") {
